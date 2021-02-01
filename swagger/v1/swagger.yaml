@@ -1,0 +1,206 @@
+---
+openapi: 3.0.1
+info:
+  title: Barbershop Reservations API V1
+  version: v1
+paths:
+  "/api/v1/reservations":
+    post:
+      summary: Creates a reservation
+      tags:
+      - Reservations
+      parameters: []
+      responses:
+        '201':
+          description: reservation created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                resdate:
+                  type: string
+                restime:
+                  type: string
+              required:
+              - username
+              - resdate
+              - restime
+          application/xml:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                resdate:
+                  type: string
+                restime:
+                  type: string
+              required:
+              - username
+              - resdate
+              - restime
+    get:
+      summary: Show all reservations
+      tags:
+      - All Reservations
+      responses:
+        '200':
+          description: reservation list
+        '422':
+          description: invalid request
+  "/api/v1/reservations/{id}":
+    get:
+      summary: Show a reservation
+      tags:
+      - Show a reservation
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: reservation found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  username:
+                    type: string
+                  resdate:
+                    type: string
+                  restime:
+                    type: string
+                required:
+                - id
+                - username
+                - resdate
+                - restime
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  username:
+                    type: string
+                  resdate:
+                    type: string
+                  restime:
+                    type: string
+                required:
+                - id
+                - username
+                - resdate
+                - restime
+        '404':
+          description: reservation not found
+    put:
+      summary: Update a reservation
+      tags:
+      - Update a reservation
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: reservation update
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  username:
+                    type: string
+                  resdate:
+                    type: string
+                  restime:
+                    type: string
+                required:
+                - id
+                - username
+                - resdate
+                - restime
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  username:
+                    type: string
+                  resdate:
+                    type: string
+                  restime:
+                    type: string
+                required:
+                - id
+                - username
+                - resdate
+                - restime
+        '404':
+          description: reservation not found
+    delete:
+      summary: Delete a reservation
+      tags:
+      - Delete a reservation
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: reservation delete
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  username:
+                    type: string
+                  resdate:
+                    type: string
+                  restime:
+                    type: string
+                required:
+                - id
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  username:
+                    type: string
+                  resdate:
+                    type: string
+                  restime:
+                    type: string
+                required:
+                - id
+        '404':
+          description: reservation not found
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.barbershop.cu
